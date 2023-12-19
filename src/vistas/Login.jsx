@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
   const [dataUser, setDataUser] = useState({
     email: "",
     password: "",
@@ -18,24 +20,30 @@ export default function Login() {
   useEffect(() => {
     const usuarioLogueado = localStorage.getItem("userLogin");
     if (usuarioLogueado) {
+      //Por las dudas, en el caso que tenga usuario, que lo setee
+      setUser(JSON.parse(usuarioLogueado));
       navigate("/");
     }
-  }, []);
+  }, [navigate, setUser]);  
+
   const handlerSubmit = (e) => {
     e.preventDefault();
     const allUsersString = localStorage.getItem("allUsers");
     const allUsers = JSON.parse(allUsersString);
     const findUser = allUsers.find((user) => user.email === dataUser.email);
 
-    // Errores descriptivos para mostrarle la lógica
+    // Errores super descriptivos para testearlos que funcionan bien
     if (!findUser) {
       return alert("Email incorrecto");
     }
-    // Si encuentra el usuario, que lo guarde en el local storage, si no, que guarde null
+
     if (findUser.password !== dataUser.password) {
       return alert("Password incorrecta");
     }
+
     localStorage.setItem("userLogin", JSON.stringify(findUser));
+    // Que me setee el usuario encontrado para refrescar la redireccion
+    setUser(findUser);
     alert("Logueado con éxito");
     navigate("/");
   };
@@ -54,6 +62,7 @@ export default function Login() {
       placeholder: "Escribe tu password...",
     },
   ];
+
   return (
     <>
       <form>
