@@ -17,15 +17,6 @@ export default function Login() {
     });
   };
 
-  useEffect(() => {
-    const usuarioLogueado = localStorage.getItem("userLogin");
-    if (usuarioLogueado) {
-      //Por las dudas, en el caso que tenga usuario, que lo setee
-      setUser(JSON.parse(usuarioLogueado));
-      navigate("/");
-    }
-  }, [navigate, setUser]);  
-
   const handlerSubmit = (e) => {
     e.preventDefault();
     const allUsersString = localStorage.getItem("allUsers");
