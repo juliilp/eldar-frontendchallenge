@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Navbar() {
   const { user } = useUser();
   console.log(user);
+  const handlerCerrarSession = () => {
+      localStorage.removeItem("userLogin")
+  }
   return (
     <header>
        {user ? (
           <ul>
-            <button>Cerrar sesion</button>
+            <button onClick={handlerCerrarSession} >Cerrar sesion</button>
             <li>{user.nombre}</li>
           </ul>
         ) : (
