@@ -21,11 +21,16 @@ export default function UserProvider({ children }) {
     }
   }, [])
 
+  const valueProvider = {
+    setUser,
+    user
+  }
+
   useEffect(() => {
     const findUser = JSON.parse(localStorage.getItem("userLogin"));
     if (findUser) {
       setUser(findUser);
     }
   },[])
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={valueProvider}>{children}</UserContext.Provider>;
 }
