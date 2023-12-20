@@ -17,6 +17,7 @@ export default function usePosts() {
       const result = await axios.get(
         `/posts?_page=${page}&_limit=${limit}${search && `&q=${search}`}`
       );
+      console.log(result.data);
       return result.data;
     } catch (error) {
       console.log("Error al traer los posts: " + error);
@@ -29,7 +30,9 @@ export default function usePosts() {
     queryFn: getPosts,
   });
 
-  const handlerSearch = (input) => {
+  const handlerSearch = (e, input) => {
+    e.preventDefault();
+    console.log(input);
     setSearch(input);
   };
 
