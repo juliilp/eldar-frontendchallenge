@@ -36,7 +36,10 @@ export default function usePosts() {
     setSearch(input);
   };
 
-  const handlerVerMas = () => setLimit(limit + 10);
+  const handlerVerMas = (e) => {
+    e.preventDefault();
+    setLimit(limit + 10);
+  };
   return {
     data,
     isError,
