@@ -14,7 +14,7 @@ export default function Home() {
     page,
     allPosts,
     setAllPosts,
-    search
+    limit
   } = usePosts();
 
   if (isError) return <span>Error.. algo anda mal</span>;
@@ -30,7 +30,7 @@ export default function Home() {
 
     try {
       const result = await axios.get(
-        `/posts?q=${searchFilter}`
+        `/posts?q=${searchFilter}&_limit=${limit}&_page=${page}`
       );
 
       return setAllPosts(result.data);
@@ -40,6 +40,7 @@ export default function Home() {
       throw error;
     }
   };
+
   return (
     <main className="w-full flex justify-center items-center flex-col px-24 mt-[15vh] ">
       <form onSubmit={handlerSearch} >
