@@ -24,6 +24,7 @@ export default function EditPost() {
       );
 
       if (result.status === 200) {
+        console.log(result)
         alert("Editado con éxito");
         navigate("/");
       }
@@ -41,7 +42,7 @@ export default function EditPost() {
 
   return (
     <>
-      <form onSubmit={handlerSubmit}>
+      <form onSubmit={handlerSubmit} >
         <article>
           <span>title</span>
           <input type="text" name="title" onChange={handlerOnChange} />
