@@ -35,11 +35,13 @@ export default function Navbar() {
       {user ? (
         <ul>
           <button onClick={handlerCerrarSession}>Cerrar sesion</button>
-          <li>{user.nombre}</li>
+          <li>{user.nombre ? user.nombre : "Sin nombre"}</li>
           {user.isAdmin && (
-            <li>
-              <Link to="/crearpost">Ir a crear post</Link>
-            </li>
+            <>
+              <li>
+                <Link to="/crearpost">Crear post</Link>
+              </li>
+            </>
           )}
         </ul>
       ) : (
