@@ -9,10 +9,10 @@ export default function isAdmin() {
   useEffect(() => {
     const usuarioLogueado = JSON.parse(localStorage.getItem("userLogin"));
     if (usuarioLogueado && usuarioLogueado.isAdmin === false) {
-      setUser(JSON.parse(usuarioLogueado));
+      // setUser(JSON.parse(usuarioLogueado));
       navigate("/");
     }
+    if (usuarioLogueado === null) return navigate("/");
   }, [navigate, setUser]);
-
   return <Outlet></Outlet>;
 }
