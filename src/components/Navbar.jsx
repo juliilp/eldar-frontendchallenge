@@ -2,11 +2,8 @@ import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
-import usePosts from "../hooks/usePosts";
-import axios from 'axios'
 export default function Navbar() {
   const { user, setUser } = useUser();
-  const { setAllPosts, page, limit, search, allPosts } = usePosts();
   const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     const handleStorageChange = () => {
@@ -26,31 +23,6 @@ export default function Navbar() {
     setUser(null);
   };
 
-  const onChangeSearch = (e) => {
-    setInputSearch(e.target.value);
-  
-  };
-
-  const handlerSearch = async (e) => {
-    e.preventDefault();
-
-    try {
-      console.log(inputSearch)
-      const result = await axios.get(
-        `/posts?${search && `?q=${inputSearch}`}`
-      );
-
-      console.log(result.data)
-        const newPosts = result.data.filter((e) => e.title.includes(inputSearch))
-        console.log(newPosts)
-
-      return setAllPosts(newPosts);
-      
-    } catch (error) {
-      console.log("Error al traer los posts: " + error);
-      throw error;
-    }
-  };
   return (
     <header className="flex fixed top-0 items-center h-16 w-full bg-white px-6 justify-between ">
       {user ? (
@@ -63,17 +35,6 @@ export default function Navbar() {
           <h2>Jsonplaceholder</h2>
         </div>
       )}
-
-      <form className="flex gap-4" onSubmit={handlerSearch}>
-        <input
-          type="text"
-          onChange={onChangeSearch}
-          name="search"
-          value={inputSearch}
-          className="border border-black outline-none"
-        />
-        <button type="submit">Enviar</button>
-      </form>
 
       {user ? (
         <ul className="flex gap-6">
