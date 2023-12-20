@@ -26,11 +26,14 @@ const Login = () => {
 
     try {
       // Validacion con zod 
+      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+      const findUser = allUsers.find((user) => user.email === dataUser.email);
+      if(findUser) return alert("Ese email ya existe")
       userSchema.parse(dataUser);
       const usuariosExistentes = JSON.parse(localStorage.getItem("allUsers"));
       const usuariosActualizados = [...usuariosExistentes, dataUser];
       localStorage.setItem("allUsers", JSON.stringify(usuariosActualizados));
-      navigate("/")
+      navigate("/login")
     } catch (error) {
       setErrorValidation(error.errors)
     }
