@@ -6,9 +6,12 @@ import Home from "./vistas/Home";
 import UserProvider from "./context/userContext";
 import isAuthenticate from "./components/isAuthenticate";
 axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 export default function App() {
+  const queryClient = new QueryClient()
   return (
-    <BrowserRouter>
+    <QueryClientProvider client={queryClient} >
+      <BrowserRouter>
       <UserProvider>
         <Routes>
           <Route path="/" Component={Home} />
@@ -22,5 +25,6 @@ export default function App() {
         </Routes>
       </UserProvider>
     </BrowserRouter>
+    </QueryClientProvider>
   );
 }
