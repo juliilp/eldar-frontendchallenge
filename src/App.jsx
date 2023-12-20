@@ -9,6 +9,7 @@ import CrearPost from "./vistas/CrearPost";
 axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import isAdmin from "./components/isAdmin";
+import EditPost from "./vistas/editPost";
 export default function App() {
   const queryClient = new QueryClient();
   return (
@@ -27,6 +28,7 @@ export default function App() {
             {/* Ruta protegida que tiene que estar logueado y ser admin */}
             <Route Component={isAdmin}>
               <Route path="/crearpost" Component={CrearPost} />
+              <Route path="/editpost/:id" Component={EditPost} />
             </Route>
           </Routes>
         </UserProvider>
