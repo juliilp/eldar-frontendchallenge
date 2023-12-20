@@ -5,26 +5,32 @@ import Registro from "./vistas/Registro";
 import Home from "./vistas/Home";
 import UserProvider from "./context/userContext";
 import isAuthenticate from "./components/isAuthenticate";
+import CrearPost from "./vistas/CrearPost";
 axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import isAdmin from "./components/isAdmin";
 export default function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient} >
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-      <UserProvider>
-        <Routes>
-          <Route path="/" Component={Home} />
+        <UserProvider>
+          <Routes>
+            <Route path="/" Component={Home} />
 
-          {/* Rutas protegidas si el usuario está "logueado" */}
-          <Route Component={isAuthenticate}>
-            <Route path="/login" Component={Login} />
-            <Route path="/registro" Component={Registro} />
-          </Route>
+            {/* Rutas protegidas si el usuario está "logueado" */}
+            <Route Component={isAuthenticate}>
+              <Route path="/login" Component={Login} />
+              <Route path="/registro" Component={Registro} />
+            </Route>
 
-        </Routes>
-      </UserProvider>
-    </BrowserRouter>
+            {/* Ruta protegida que tiene que estar logueado y ser admin */}
+            <Route Component={isAdmin}>
+              <Route path="/crearpost" Component={CrearPost} />
+            </Route>
+          </Routes>
+        </UserProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }
