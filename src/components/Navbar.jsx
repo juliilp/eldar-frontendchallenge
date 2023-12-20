@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 export default function Navbar() {
   const { user, setUser } = useUser();
-  const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     const handleStorageChange = () => {
       const storedUser = JSON.parse(localStorage.getItem("userLogin"));
