@@ -23,7 +23,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="flex fixed top-0 items-center h-16 w-full bg-white px-6 justify-between ">
+    <header className="flex fixed top-0 items-center h-16 w-full bg-white px-6 justify-between z-50 ">
       {user ? (
         <div className="flex items-center gap-2">
           <FaUser />
