@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import { useEffect, useState } from "react";
 import usePosts from "../hooks/usePosts";
+import axios from "axios";
 export default function Navbar() {
   const { user, setUser } = useUser();
   const [inputSearch, setInputSearch] = useState("");
@@ -24,19 +25,22 @@ export default function Navbar() {
     setUser(null);
   };
 
-  console.log(data);
-  if (isLoading) return <span>Loading..</span>;
-
   const onChangeSearch = (e) => {
     setInputSearch(e.target.value);
   };
 
+  if (isLoading) return <span>Loading..</span>;
   return (
     <header>
       {user ? (
         <ul>
           <button onClick={handlerCerrarSession}>Cerrar sesion</button>
           <li>{user.nombre}</li>
+          {user.isAdmin && (
+            <li>
+              <Link to="/crearpost">Ir a crear post</Link>
+            </li>
+          )}
         </ul>
       ) : (
         <ul>
