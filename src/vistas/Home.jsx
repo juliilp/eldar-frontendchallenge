@@ -30,14 +30,10 @@ export default function Home() {
 
     try {
       const result = await axios.get(
-        `/posts?${search && `?q=${searchFilter}`}`
+        `/posts?q=${searchFilter}`
       );
 
-      console.log(result.data)
-        const newPosts = result.data.filter((e) => e.title.includes(searchFilter))
-        console.log(newPosts)
-
-      return setAllPosts(newPosts);
+      return setAllPosts(result.data);
       
     } catch (error) {
       console.log("Error al traer los posts: " + error);
