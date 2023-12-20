@@ -13,6 +13,7 @@ export default function Home() {
     handlerAvanzarPagina,
     handlerRetrocederPagina,
     page,
+    allPosts,
   } = usePosts();
   if (isError) return <span>Error.. algo anda mal</span>;
 
@@ -28,11 +29,9 @@ export default function Home() {
   return (
     <main className="w-full flex justify-center items-center flex-col px-24 mt-[15vh] ">
       <section className="w-full h-full   grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12">
-        {isLoading && generateComponentLoading(8)}
-        {isSuccess &&
-          data.map(({ title, body, id }, key) => {
-            return <Post titulo={title} body={body} id={id} key={key} />;
-          })}
+        {allPosts.map(({ title, body, id }, key) => {
+          return <Post titulo={title} body={body} id={id} key={key} />;
+        })}
       </section>
       <article className="flex flex-col">
         <div className="flex gap-6">
