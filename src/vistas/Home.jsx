@@ -93,9 +93,9 @@ export default function Home() {
           <FaArrowDown />
         </div>
       </article>
-     
+            
             {
-              allPosts.length > 17 && <a href="#menu" className="absolute right-10 bottom-10 beha rounded-full bg-red-600 p-4 " ><FaArrowUp size={25} /></a>
+              allPosts.length > 17 &&  <a href="#menu" className="fixed right-10 bottom-10 rounded-full bg-red-600 p-4 " ><FaArrowUp size={25} /></a>
             }
      
     </main>
