@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { string, object, boolean } from 'zod';
 import userSchema from "../zod/validacionUser";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate()
   const [errorValidation, setErrorValidation] = useState(null);
   const [dataUser, setDataUser] = useState({
     nombre: "",
@@ -29,6 +30,7 @@ const Login = () => {
       const usuariosExistentes = JSON.parse(localStorage.getItem("allUsers"));
       const usuariosActualizados = [...usuariosExistentes, dataUser];
       localStorage.setItem("allUsers", JSON.stringify(usuariosActualizados));
+      navigate("/")
     } catch (error) {
       setErrorValidation(error.errors)
     }
