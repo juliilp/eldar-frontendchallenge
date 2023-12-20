@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import usePosts from "../hooks/usePosts";
 export default function Navbar() {
   const { user, setUser } = useUser();
-  const { data, isLoading } = usePosts();
+  const [inputSearch, setInputSearch] = useState("");
+  const { data, isLoading, handlerSearch, handlerVerMas } = usePosts();
   useEffect(() => {
     const handleStorageChange = () => {
       const storedUser = JSON.parse(localStorage.getItem("userLogin"));
@@ -26,6 +27,10 @@ export default function Navbar() {
   console.log(data);
   if (isLoading) return <span>Loading..</span>;
 
+  const onChangeSearch = (e) => {
+    setInputSearch(e.target.value);
+  };
+
   return (
     <header>
       {user ? (
@@ -43,6 +48,9 @@ export default function Navbar() {
           </li>
         </ul>
       )}
+      <input type="text" onChange={onChangeSearch} name="search" />
+      <button onClick={() => handlerSearch(inputSearch)}>Enviar</button>
+      <button onClick={handlerVerMas}>Ver más posts</button>
     </header>
   );
 }
