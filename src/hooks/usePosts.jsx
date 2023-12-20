@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function usePosts() {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(9);
   const [search, setSearch] = useState("");
   const handlerAvanzarPagina = () => setPage(page + 1);
   const handlerRetrocederPagina = () => {
