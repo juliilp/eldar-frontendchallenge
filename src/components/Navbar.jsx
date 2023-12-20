@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import { useEffect } from "react";
-import usePosts from '../hooks/usePosts'
+import usePosts from "../hooks/usePosts";
 export default function Navbar() {
   const { user, setUser } = useUser();
-  const {data, isLoading} = usePosts()
+  const { data, isLoading } = usePosts();
   useEffect(() => {
     const handleStorageChange = () => {
       const storedUser = JSON.parse(localStorage.getItem("userLogin"));
@@ -23,9 +23,9 @@ export default function Navbar() {
     setUser(null);
   };
 
-  console.log(data)
-  if(isLoading) return <span>Loading..</span>
-  
+  console.log(data);
+  if (isLoading) return <span>Loading..</span>;
+
   return (
     <header>
       {user ? (
