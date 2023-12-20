@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { string} from "zod";
+import { string } from "zod";
 import useUser from "../hooks/useUser";
-
+import validacionUser from "../zod/validacionUser";
 const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useUser();
@@ -21,21 +21,17 @@ const Login = () => {
 
   /// Hace que los errores de las validaciones se borren despues de 3 segundos
   useEffect(() => {
-    if(errorValidation?.length > 0) {
+    if (errorValidation?.length > 0) {
       const timer = setTimeout(() => {
-        setErrorValidation(null)
-      }, 3000)
-     return () => clearTimeout(timer)
+        setErrorValidation(null);
+      }, 3000);
+      return () => clearTimeout(timer);
     }
-  },[errorValidation])
+  }, [errorValidation]);
   const handlerSubmit = (e) => {
     e.preventDefault();
     try {
-      const emailValidation = string().email({message:"Escribi un email válido"});
-      const passwordValidation = string().min(5, {message:"Password minimo 5 caracteres"}).max(10, {message:"Password maximo 10 caracteres"});
-
-      emailValidation.parse(dataUser.email);
-      passwordValidation.parse(dataUser.password);
+      validacionUser.parse(dataUser);
 
       setErrorValidation(null);
 
@@ -43,9 +39,10 @@ const Login = () => {
       const findUser = allUsers.find((user) => user.email === dataUser.email);
 
       if (!findUser) return alert("Email incorrecto");
-      
-      if (findUser.password !== dataUser.password) return alert("Password incorrecta");
-      
+
+      if (findUser.password !== dataUser.password)
+        return alert("Password incorrecta");
+
       localStorage.setItem("userLogin", JSON.stringify(findUser));
       setUser(findUser);
       alert("Logueado con éxito");

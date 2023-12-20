@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { string, object, boolean } from 'zod';
+import userSchema from "../zod/validacionUser";
 
-export default function Login() {
+const Login = () => {
+  const [errorValidation, setErrorValidation] = useState(null);
   const [dataUser, setDataUser] = useState({
     nombre: "",
     descripcion: "",
@@ -20,21 +23,18 @@ export default function Login() {
   const handlerSubmit = (e) => {
     e.preventDefault();
 
-    const usuariosExistentes = JSON.parse(localStorage.getItem("allUsers")) ?? [
-      {
-        nombre: "admin",
-        descripcion: "Soy descripcion de admin",
-        edad: "soy edad",
-        email: "admin123@gmail.com",
-        password: "123456",
-        isAdmin: true,
-      },
-    ];
-
-    const usuariosActualizados = [...usuariosExistentes, dataUser];
-    localStorage.setItem("allUsers", JSON.stringify(usuariosActualizados));
+    try {
+      // Validacion con zod 
+      userSchema.parse(dataUser);
+      const usuariosExistentes = JSON.parse(localStorage.getItem("allUsers"));
+      const usuariosActualizados = [...usuariosExistentes, dataUser];
+      localStorage.setItem("allUsers", JSON.stringify(usuariosActualizados));
+    } catch (error) {
+      setErrorValidation(error.errors)
+    }
   };
 
+  //Use éste formato para no repetir tanto código de html
   const datosUser = [
     {
       span: "nombre",
@@ -57,7 +57,6 @@ export default function Login() {
       value: dataUser.edad,
       placeholder: "Escribe tu edad",
     },
-
     {
       span: "email:",
       name: "email",
@@ -73,6 +72,17 @@ export default function Login() {
       placeholder: "Escribe tu password...",
     },
   ];
+
+  /// Hace que los errores de las validaciones se borren despues de 3 segundos
+  useEffect(() => {
+    if(errorValidation?.length > 0) {
+      const timer = setTimeout(() => {
+        setErrorValidation(null)
+      }, 3000)
+     return () => clearTimeout(timer)
+    }
+  },[errorValidation])
+
   return (
     <>
       <form>
@@ -92,6 +102,15 @@ export default function Login() {
         })}
         <button onClick={handlerSubmit}>Enviar</button>
       </form>
+      {errorValidation && (
+        <article style={{ color: "red" }}>
+          {errorValidation.map((error, index) => (
+            <p key={index}>{error.message}</p>
+          ))}
+        </article>
+      )}
     </>
   );
-}
+};
+
+export default Login;
