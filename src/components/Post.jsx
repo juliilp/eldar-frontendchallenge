@@ -19,20 +19,24 @@ export default function Post({ titulo, body, id }) {
       console.log(error)
     }
   }
+  const editTexto = body.split("").splice(0,125).join("")
   return (
     <article
-      className={`w-[300px] h-[300px] flex flex-col justify-between py-6 items-center overflow-hidden border border-gray-500 }`}
+      className={`w-[350px] h-[400px] flex flex-col  gap-3 py-6 items-center overflow-hidden border-dashed border-2 border-gray-500 }`}
     >
       <h1 className="text-[#8e8A8C] font-semibold text-2xl max-w-[250px] text-center truncate ">
         {titulo}
       </h1>
-      <p className="max-w-[200px] text-sm text-center">{body}</p>
-      {isAdmin && (
+      <img src={`https://picsum.photos/id/${id}/200/150`} alt="imagen" />
+      <p className="max-w-[200px] text-xs text-center">{editTexto}</p>
+    <div className="flex gap-6 items-center justify-center" >
+    {isAdmin && (
         <Link className="border border-black py-2 px-6" to={`/editPost/${id}`}>
           Editar
         </Link>
       )}
       <button onClick={handlerBorrarPost} >Borrar Post</button>
+    </div>
     </article>
   );
 }
