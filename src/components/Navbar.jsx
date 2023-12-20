@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import { useEffect, useState } from "react";
-import usePosts from "../hooks/usePosts";
-import axios from "axios";
 export default function Navbar() {
   const { user, setUser } = useUser();
-  const [inputSearch, setInputSearch] = useState("");
-  const { data, isLoading, handlerSearch, handlerVerMas } = usePosts();
+  // const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     const handleStorageChange = () => {
       const storedUser = JSON.parse(localStorage.getItem("userLogin"));
@@ -29,7 +26,6 @@ export default function Navbar() {
     setInputSearch(e.target.value);
   };
 
-  if (isLoading) return <span>Loading..</span>;
   return (
     <header>
       {user ? (
@@ -54,9 +50,9 @@ export default function Navbar() {
           </li>
         </ul>
       )}
-      <input type="text" onChange={onChangeSearch} name="search" />
-      <button onClick={() => handlerSearch(inputSearch)}>Enviar</button>
-      <button onClick={handlerVerMas}>Ver más posts</button>
+      {/* <input type="text" onChange={onChangeSearch} name="search" /> */}
+      {/* <button onClick={() => handlerSearch(inputSearch)}>Enviar</button>
+      <button onClick={handlerVerMas}>Ver más posts</button> */}
     </header>
   );
 }
