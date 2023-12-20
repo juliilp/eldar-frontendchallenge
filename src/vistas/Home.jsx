@@ -42,8 +42,10 @@ export default function Home() {
   };
   return (
     <main className="w-full flex justify-center items-center flex-col px-24 mt-[15vh] ">
+      <form onSubmit={handlerSearch} >
       <input type="text" name="search" placeholder="Busqueda..."  onChange={onChangeSearchFilter} />
-      <button onClick={handlerSearch} >Buscar</button>
+      <button  >Buscar</button>
+      </form>
       <section className="w-full h-full   grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12">
         {allPosts.map(({ title, body, id }, key) => {
           return <Post titulo={title} body={body} id={id} key={key} />;
