@@ -54,8 +54,8 @@ const Login = () => {
   };
 
   return (
-    <>
-      <form>
+    <section className="pt-[15vh] flex justify-center items-center h-screen flex-col">
+      <form className="border border-black p-8 flex flex-col gap-6 justify-center items-center h-[300px] max-w-[350px]">
         <article>
           <span>Email:</span>
           <input
@@ -64,6 +64,8 @@ const Login = () => {
             value={dataUser.email}
             placeholder="Escribe tu email.."
             name="email"
+            autoFocus
+            className="outline-none"
           />
         </article>
         <article>
@@ -86,7 +88,7 @@ const Login = () => {
           ))}
         </article>
       )}
-    </>
+    </section>
   );
 };
 
