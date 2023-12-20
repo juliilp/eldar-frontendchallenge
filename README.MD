@@ -19,6 +19,12 @@ Si estas logueado, te sale tu nombre y "Cerrar sesion"
 Si estas deslogueado, te sale para ir a Login o Registro
 Apenas actualices o desactualices los datos iniciando o cerrando sesión, los datos se actualizan para mostrar lo que deberían 
 
+Filtro de busqueda
+Funciona perfectamente y actualiza el estado cuando se realiza su busqueda, Tambien solo carga los objetos que se ven en pantalla para un mejor rendimiento
+
+Paginado 
+No se puede ir hacia menos de página 1 ni tampoco ir a más páginas de lo que hay
+
 usuario default:
 email: admin123@gmail.com
 password: 123456
