@@ -10,12 +10,14 @@ axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import isAdmin from "./components/isAdmin";
 import EditPost from "./vistas/editPost";
+import Navbar from "./components/Navbar";
 export default function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <UserProvider>
+          <Navbar />
           <Routes>
             <Route path="/" Component={Home} />
 

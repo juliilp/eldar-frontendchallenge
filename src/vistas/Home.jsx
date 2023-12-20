@@ -8,14 +8,13 @@ export default function Home() {
   if (isLoading) return <span>Loading..</span>;
   if (isError) return <span>Error.. algo anda mal</span>;
   return (
-    <div>
-      <Navbar />
-      <section>
+    <main className="w-full flex justify-center items-center flex-col px-24 ">
+      <section className="w-full h-full  mt-[15vh] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         {isSuccess &&
-          data.map(({ title, body }, key) => {
-            return <Post titulo={title} body={body} key={key} />;
+          data.map(({ title, body, id }, key) => {
+            return <Post titulo={title} body={body} id={id} key={key} />;
           })}
       </section>
-    </div>
+    </main>
   );
 }
