@@ -1,33 +1,53 @@
-import { useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import PostLoading from "../components/PostLoading";
 import usePosts from "../hooks/usePosts";
+import axios from 'axios'
 export default function Home() {
+  const [searchFilter, setSearchFilter] = useState("")
   const {
-    data,
-    isLoading,
-    isSuccess,
     isError,
     handlerVerMas,
     handlerAvanzarPagina,
     handlerRetrocederPagina,
     page,
     allPosts,
+    setAllPosts,
+    search
   } = usePosts();
+
   if (isError) return <span>Error.. algo anda mal</span>;
 
-  function generateComponentLoading(number) {
-    const loadingCards = [];
-    for (let i = 0; i < number; i++) {
-      loadingCards.push(<PostLoading key={i} />);
-    }
-    return loadingCards;
+  const pageDisabled = page > 1 ? false : true;
+
+  const onChangeSearchFilter = (e) => {
+    setSearchFilter(e.target.value)
   }
 
-  const pageDisabled = page > 1 ? false : true;
+  const handlerSearch = async (e) => {
+    e.preventDefault();
+
+    try {
+      const result = await axios.get(
+        `/posts?${search && `?q=${searchFilter}`}`
+      );
+
+      console.log(result.data)
+        const newPosts = result.data.filter((e) => e.title.includes(searchFilter))
+        console.log(newPosts)
+
+      return setAllPosts(newPosts);
+      
+    } catch (error) {
+      console.log("Error al traer los posts: " + error);
+      throw error;
+    }
+  };
   return (
     <main className="w-full flex justify-center items-center flex-col px-24 mt-[15vh] ">
+      <input type="text" name="search" placeholder="Busqueda..."  onChange={onChangeSearchFilter} />
+      <button onClick={handlerSearch} >Buscar</button>
       <section className="w-full h-full   grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12">
         {allPosts.map(({ title, body, id }, key) => {
           return <Post titulo={title} body={body} id={id} key={key} />;

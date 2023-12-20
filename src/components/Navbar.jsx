@@ -3,9 +3,10 @@ import useUser from "../hooks/useUser";
 import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import usePosts from "../hooks/usePosts";
+import axios from 'axios'
 export default function Navbar() {
   const { user, setUser } = useUser();
-  const { setSearch } = usePosts();
+  const { setAllPosts, page, limit, search, allPosts } = usePosts();
   const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     const handleStorageChange = () => {
@@ -27,13 +28,29 @@ export default function Navbar() {
 
   const onChangeSearch = (e) => {
     setInputSearch(e.target.value);
+  
   };
 
-  const handlerSearch = (e) => {
+  const handlerSearch = async (e) => {
     e.preventDefault();
-    setSearch(inputSearch);
-  };
 
+    try {
+      console.log(inputSearch)
+      const result = await axios.get(
+        `/posts?${search && `?q=${inputSearch}`}`
+      );
+
+      console.log(result.data)
+        const newPosts = result.data.filter((e) => e.title.includes(inputSearch))
+        console.log(newPosts)
+
+      return setAllPosts(newPosts);
+      
+    } catch (error) {
+      console.log("Error al traer los posts: " + error);
+      throw error;
+    }
+  };
   return (
     <header className="flex fixed top-0 items-center h-16 w-full bg-white px-6 justify-between ">
       {user ? (

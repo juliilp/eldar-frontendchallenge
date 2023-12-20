@@ -14,11 +14,6 @@ export default function usePosts() {
     }
   };
 
-  // const { data, isError, isLoading, isSuccess } = useQuery({
-  //   queryKey: ["posts", page, search, limit],
-  //   queryFn: getPosts,
-  // });
-
   const handlerSearch = (e, input) => {
     e.preventDefault();
     console.log(input);
@@ -44,7 +39,7 @@ export default function usePosts() {
       }
     };
     getPosts();
-  }, []);
+  }, [search,page,limit]);
 
   return {
     handlerAvanzarPagina,
@@ -54,5 +49,8 @@ export default function usePosts() {
     handlerVerMas,
     allPosts,
     setAllPosts,
+    page,
+    limit,
+    search,
   };
 }
