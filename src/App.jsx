@@ -25,7 +25,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<LazyHome />} />
 
-            {/* Rutas protegidas si el usuario está "logueado" */}
+            {/* Si está logueado, no puede entrar a estas rutas*/}
             <Route Component={isAuthenticate}>
               <Route
                 path="/login"
@@ -45,7 +45,7 @@ export default function App() {
               />
             </Route>
 
-            {/* No te deja acceder si no estas authenticado */}
+            {/* Solo te deja entrar a éstas rutas si está logueado*/}
             <Route Component={isNotAuthenticate}>
               <Route
                 path="/perfil"
@@ -56,7 +56,8 @@ export default function App() {
                 }
               />
             </Route>
-            {/* Ruta protegida que tiene que estar logueado y ser admin */}
+
+            {/* Solo te deja entrar si está logueado y sos admin */}
             <Route Component={isAdmin}>
               <Route
                 path="/crearpost"
