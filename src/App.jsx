@@ -11,6 +11,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import isAdmin from "./components/isAdmin";
 import EditPost from "./vistas/editPost";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 export default function App() {
   const queryClient = new QueryClient();
   return (
@@ -33,6 +34,7 @@ export default function App() {
               <Route path="/editpost/:id" Component={EditPost} />
             </Route>
           </Routes>
+          <Footer />
         </UserProvider>
       </BrowserRouter>
     </QueryClientProvider>
