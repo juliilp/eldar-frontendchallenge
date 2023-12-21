@@ -53,6 +53,7 @@ const Login = () => {
     }
   };
 
+  console.log(errorValidation);
   return (
     <section className="pt-[15vh] flex justify-center items-center h-screen flex-col">
       <h1 className="text-5xl font-bold">Ingresa a tu cuenta</h1>
@@ -64,6 +65,11 @@ const Login = () => {
       </p>
       <form className="flex flex-col gap-6 justify-center items-center h-[300px] max-w-[350px]">
         <article>
+          {errorValidation && (
+            <span className="block text-sm bg-red-500 p-2 text-white rounded-sm my-2">
+              {errorValidation[0].message}
+            </span>
+          )}
           <span className="block text-sm">Email</span>
           <input
             type="email"
@@ -94,13 +100,6 @@ const Login = () => {
           Ingresar
         </button>
       </form>
-      {errorValidation && (
-        <article style={{ color: "red" }}>
-          {errorValidation.map((error, index) => (
-            <p key={index}>{error.message}</p>
-          ))}
-        </article>
-      )}
     </section>
   );
 };
