@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import useUser from "../hooks/useUser";
 
 export default function ModalPerfil({ switchModal, closeModal }) {
   const [newNombre, setNewNombre] = useState("");
   const usuarioLogueado = JSON.parse(localStorage.getItem("userLogin"));
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+  const { user, setUser } = useUser();
   const handlerSubmit = (e) => {
     e.preventDefault();
     if (!usuarioLogueado)
@@ -32,13 +34,13 @@ export default function ModalPerfil({ switchModal, closeModal }) {
     Swal.fire({
       icon: "success",
       title: "¡Nombre cambiado con éxito!",
-      text: "Actualiza la pagina para ver los cambios",
     });
     closeModal();
     // Actualizando los datos en ambos keys del local storage
     const findUser = allUsers.filter((e) => e.email !== usuarioLogueado.email);
     localStorage.setItem("allUsers", JSON.stringify([...findUser, newUser]));
     localStorage.setItem("userLogin", JSON.stringify(newUser));
+    setUser(newUser);
   };
 
   const onChangeNewNombre = (e) => {
