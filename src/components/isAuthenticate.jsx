@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import useUser from "../hooks/useUser";
+import React, { useEffect } from "react";
 
 export default function isAuthenticate() {
   const { setUser } = useUser();
