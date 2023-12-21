@@ -74,11 +74,11 @@ export default function Home() {
       </section>
 
       <article className="flex flex-col  w-full">
-        <div className="flex gap-6 items-center justify-center">
+        <div className="flex gap-2 items-center justify-center px-6 md:px-0 md:gap-6">
           <button
             onClick={handlerRetrocederPagina}
             disabled={pageDisabled}
-            className={`rounded-lg py-2 px-10 font-bold bg-[#4A8ECC] text-white ${
+            className={`rounded-lg py-2 px-6 md:px-10 font-bold bg-[#4A8ECC] text-white ${
               pageDisabled && "cursor-not-allowed  bg-red-600 "
             }`}
           >
@@ -86,7 +86,7 @@ export default function Home() {
           </button>
           <button
             onClick={handlerAvanzarPagina}
-            className={`rounded-lg py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white ${
+            className={`rounded-lg py-2 px-6 md:px-10 font-bold bg-[rgb(74,142,204)] text-white ${
               allPosts.length !== limit && "bg-red-600 cursor-not-allowed"
             }`}
           >
@@ -95,10 +95,10 @@ export default function Home() {
         </div>
 
         <div
-          className="flex gap-3 items-center justify-center my-4 cursor-pointer"
+          className="flex gap-3 items-center justify-center my-4 cursor-pointer "
           onClick={handlerVerMas}
         >
-          <button type="button" className="text-xl">
+          <button type="button" className=" text-sm md:text-xl">
             Ver más posts
           </button>
           <FaArrowDown size={20} />
