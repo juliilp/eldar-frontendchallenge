@@ -8,11 +8,10 @@ export default function usePosts() {
   const [search, setSearch] = useState("");
   const [allPosts, setAllPosts] = useState([]);
   const handlerAvanzarPagina = () => {
-    
-    if(allPosts.length === limit) {
-      setPage(page + 1)
+    if (allPosts.length === limit) {
+      setPage(page + 1);
     }
-    console.log(allPosts)
+    console.log(allPosts);
   };
   const handlerRetrocederPagina = () => {
     if (page > 1) {
@@ -45,7 +44,7 @@ export default function usePosts() {
       }
     };
     getPosts();
-  }, [search,page,limit]);
+  }, [search, page, limit]);
 
   return {
     handlerAvanzarPagina,
