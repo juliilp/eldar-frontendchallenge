@@ -39,7 +39,7 @@ export default function Post({ titulo, body, id }) {
     <article
       className={` w-full max-w-[350px] h-[450px] ,d:h-[400px] flex flex-col  gap-3 py-4 shadow-xl items-center justify-center  border-gray-500 rounded-lg }`}
     >
-      <h1 className="font-bold text-xl w-[250px] md:w-[285px] text-center truncate ">
+      <h1 className="font-bold text-xl w-[250px] md:w-[285px] text-center truncate  px-4">
         {titulo}
       </h1>
       <img
