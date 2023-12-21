@@ -33,7 +33,7 @@ export default function Navbar() {
         </div>
       )}
       <Link
-        className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+        className="rounded-lg py-[10px] px-10 font-bold bg-[rgb(74,142,204)] text-white"
         to="/"
       >
         Ir a Inicio
@@ -45,7 +45,7 @@ export default function Navbar() {
               <li>
                 <Link
                   to="/crearpost"
-                  className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+                  className="rounded-lg py-[10px] px-10 font-bold bg-[rgb(74,142,204)] text-white"
                 >
                   Crear post
                 </Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
               <li>
                 <button
                   onClick={handlerCerrarSession}
-                  className="rounded-lg py-2 px-10 font-bold bg-[#ff7070] text-white"
+                  className="rounded-lg py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
                 >
                   Cerrar sesion
                 </button>
@@ -66,7 +66,7 @@ export default function Navbar() {
           <li>
             <Link
               to="/login"
-              className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+              className="rounded-lg py-[10px] px-10 font-bold bg-[rgb(74,142,204)] text-white"
             >
               Login
             </Link>
@@ -74,7 +74,7 @@ export default function Navbar() {
           <li>
             <Link
               to="/registro"
-              className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+              className="rounded-lg py-[10px] px-10 font-bold bg-[rgb(74,142,204)] text-white"
             >
               Registro
             </Link>

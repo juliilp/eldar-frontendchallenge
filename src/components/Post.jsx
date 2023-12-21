@@ -21,7 +21,7 @@ export default function Post({ titulo, body, id }) {
   const editTexto = body.split("").splice(0, 125).join("");
   return (
     <article
-      className={`w-[350px] h-[400px] flex flex-col  gap-3 py-6 items-center overflow-hidden border-dashed border-2 border-gray-500 rounded-lg }`}
+      className={`w-[350px] h-[400px] flex flex-col  gap-3 py-4 shadow-xl items-center overflow-hidden border-gray-500 rounded-lg }`}
     >
       <h1 className="font-bold text-xl max-w-[250px] text-center truncate ">
         {titulo}
@@ -31,7 +31,7 @@ export default function Post({ titulo, body, id }) {
       <div className="flex gap-6 items-center justify-center">
         {isAdmin && (
           <Link
-            className="rounded-lg py-2 px-10 font-bold bg-[#ff7070] text-white"
+            className="rounded-lg py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
             to={`/editPost/${id}`}
           >
             Editar
@@ -39,7 +39,7 @@ export default function Post({ titulo, body, id }) {
         )}
         <button
           onClick={handlerBorrarPost}
-          className="rounded-lg py-2 px-10 font-bold bg-[#ff7070] text-white"
+          className="rounded-lg py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
         >
           Borrar Post
         </button>

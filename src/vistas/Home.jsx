@@ -78,15 +78,15 @@ export default function Home() {
           <button
             onClick={handlerRetrocederPagina}
             disabled={pageDisabled}
-            className={`rounded-lg py-2 px-10 font-bold bg-[#ff7070] text-white ${
-              pageDisabled && "bg-red-600 cursor-not-allowed"
+            className={`rounded-lg py-2 px-10 font-bold bg-[#4A8ECC] text-white ${
+              pageDisabled && "cursor-not-allowed  bg-red-600 "
             }`}
           >
             Retroceder
           </button>
           <button
             onClick={handlerAvanzarPagina}
-            className={`rounded-lg py-2 px-10 font-bold bg-[#ff7070] text-white ${
+            className={`rounded-lg py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white ${
               allPosts.length !== limit && "bg-red-600 cursor-not-allowed"
             }`}
           >
