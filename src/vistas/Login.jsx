@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { string } from "zod";
 import useUser from "../hooks/useUser";
 import validacionUser from "../zod/validacionUser";
@@ -55,31 +55,44 @@ const Login = () => {
 
   return (
     <section className="pt-[15vh] flex justify-center items-center h-screen flex-col">
-      <form className="border border-black p-8 flex flex-col gap-6 justify-center items-center h-[300px] max-w-[350px]">
+      <h1 className="text-5xl font-bold">Ingresa a tu cuenta</h1>
+      <p className="text-sm text-center dark:text-gray-400 my-10">
+        ¿No tenes cuenta?
+        <Link to="/registro" className=" pl-4 focus:underline hover:underline">
+          Ingresa aqui
+        </Link>
+      </p>
+      <form className="flex flex-col gap-6 justify-center items-center h-[300px] max-w-[350px]">
         <article>
-          <span>Email:</span>
+          <span className="block text-sm">Email</span>
           <input
             type="email"
             onChange={onChangeLogin}
             value={dataUser.email}
-            placeholder="Escribe tu email.."
+            placeholder="ejemplo@gmail.com"
             name="email"
             autoFocus
-            className="outline-none"
+            className="rounded w-full border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
           />
         </article>
         <article>
-          <span>Contraseña:</span>
+          <span className="block text-sm">Contraseña</span>
           <input
             type="password"
             onChange={onChangeLogin}
             value={dataUser.password}
-            placeholder="Escribe tu contraseña..."
+            placeholder="************"
             name="password"
+            className="rounded w-full border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
           />
         </article>
 
-        <button onClick={handlerSubmit}>Enviar</button>
+        <button
+          onClick={handlerSubmit}
+          className="w-full px-8 py-3 font-semibold bg-black text-white hover:bg-zinc-800 transition-colors rounded"
+        >
+          Ingresar
+        </button>
       </form>
       {errorValidation && (
         <article style={{ color: "red" }}>
