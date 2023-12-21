@@ -56,6 +56,7 @@ const Login = () => {
       Swal.fire({
         icon: "success",
         title: "¡Has iniciado sesion con éxito!",
+        text:"En el localstorage vas a poder ver tu usuario"
       });
 
       navigate("/");

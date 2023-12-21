@@ -11,8 +11,6 @@ export default function UserProvider({ children }) {
       localStorage.setItem("allUsers", JSON.stringify([
         {
           nombre: "admin",
-          descripcion: "Soy descripcion de admin",
-          edad: "soy edad",
           email: "admin123@gmail.com",
           password: "123456",
           isAdmin: true,

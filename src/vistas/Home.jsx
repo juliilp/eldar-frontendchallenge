@@ -98,8 +98,8 @@ export default function Home() {
         )}
       </section>
 
-      <article className="flex flex-col w-full items-center justify-center">
-        <div className="flex gap-2 items-center justify-center px-6 md:px-0 md:gap-6">
+      <section className="flex flex-col w-full items-center justify-center">
+        <article className="flex gap-2 items-center justify-center px-6 md:px-0 md:gap-6">
           <button
             onClick={handlerRetrocederPagina}
             disabled={pageDisabled}
@@ -117,9 +117,9 @@ export default function Home() {
           >
             Avanzar
           </button>
-        </div>
+        </article>
 
-        <div className="flex gap-3 items-center justify-center my-4 w-max ">
+        <article className="flex gap-3 items-center justify-center my-4 w-max ">
           <button
             type="button"
             className="text-xl md:text-2xl my-8"
@@ -132,8 +132,8 @@ export default function Home() {
             className="animate-bounce cursor-pointer"
             onClick={handlerVerMas}
           />
-        </div>
-      </article>
+        </article>
+      </section>
 
       {showScrollButton && (
         <a

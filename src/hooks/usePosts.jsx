@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -11,7 +10,6 @@ export default function usePosts() {
     if (allPosts.length === limit) {
       setPage(page + 1);
     }
-    console.log(allPosts);
   };
   const handlerRetrocederPagina = () => {
     if (page > 1) {

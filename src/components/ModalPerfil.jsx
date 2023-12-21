@@ -53,8 +53,8 @@ export default function ModalPerfil({ switchModal, closeModal }) {
   return (
     <>
       {switchModal && (
-        <article className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-          <div className="bg-white p-16 rounded shadow-md flex items-center justify-center flex-col ">
+        <section className="  fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+          <article className="bg-white p-16 rounded shadow-md flex items-center justify-center flex-col w-[95%] sm:w-full max-w-[450px] ">
             <h2 className="text-xl md:text-2xl font-bold mb-4">
               Escribi tu nuevo nombre
             </h2>
@@ -65,9 +65,10 @@ export default function ModalPerfil({ switchModal, closeModal }) {
               <input
                 type="text"
                 onChange={onChangeNewNombre}
-                className="focus:border-gray-200 focus:bg-gray200 font-medium block py-2 pl-4 w-[250px] "
+                className="focus:border-gray-200 focus:bg-gray200 font-medium block py-2 pl-4 w-[250px] outline-none "
                 placeholder="Escribe tu nuevo nombre.."
               />
+              <button>Enviar</button>
             </form>
             <button
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4"
@@ -75,8 +76,9 @@ export default function ModalPerfil({ switchModal, closeModal }) {
             >
               Cerrar Modal
             </button>
-          </div>
-        </article>
+            
+          </article>
+        </section>
       )}
     </>
   );

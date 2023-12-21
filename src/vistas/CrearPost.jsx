@@ -21,16 +21,10 @@ export default function CrearPost() {
         title: "Solo los admins editar posts",
       });
 
-    if (createPost.title.length < 4)
+    if (createPost.title.length < 4 ||  createPost.body.length < 4)
       return Swal.fire({
         icon: "error",
-        title: "Inserte al menos en el titulo 4 letras",
-      });
-
-    if (createPost.body.length < 4)
-      return Swal.fire({
-        icon: "error",
-        title: "Inserte al menos en el body 4 letras",
+        title: "Inserte al menos 4 letras en los campos",
       });
 
     const result = await axios.post(

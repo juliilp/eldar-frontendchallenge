@@ -27,7 +27,6 @@ export default function Post({ titulo, body, id }) {
             title: `¡Card ${id} borrada!`,
             text: 'En consola está el objeto "borrado" ',
           });
-          console.log();
         }
       });
     } catch (error) {
