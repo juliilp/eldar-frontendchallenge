@@ -7,6 +7,11 @@ export default function ModalPerfil({ switchModal, closeModal }) {
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const handlerSubmit = (e) => {
     e.preventDefault();
+    if (!usuarioLogueado)
+      return Swal.fire({
+        icon: "error",
+        title: "Acceso denegado",
+      });
     if (newNombre.length < 3)
       return Swal.fire({
         icon: "error",
