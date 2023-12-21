@@ -98,8 +98,10 @@ export default function Home() {
           className="flex gap-3 items-center justify-center my-4 cursor-pointer"
           onClick={handlerVerMas}
         >
-          <button type="button">Ver más posts</button>
-          <FaArrowDown />
+          <button type="button" className="text-xl">
+            Ver más posts
+          </button>
+          <FaArrowDown size={20} />
         </div>
       </article>
 
