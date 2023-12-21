@@ -17,7 +17,7 @@ export default function Footer() {
   ];
   return (
     <footer className="flex flex-col gap-8 mt-32">
-      <section className="flex w-full justify-evenly items-center px-8 ">
+      <section className="flex w-full justify-evenly items-center px-8  mb-32">
         <article className="flex flex-col gap-6">
           <strong className="block text-center text-xl font-medium text-gray-900 sm:text-2xl">
             ¿Queres recibir las ultimas novedades?
