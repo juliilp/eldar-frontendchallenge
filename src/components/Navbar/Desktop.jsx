@@ -13,10 +13,13 @@ export default function Desktop({ handlerCerrarSession }) {
       >
         {user && (
           <div className="flex items-center gap-2">
-            <FaUser />
-            <h2 className="text-xl font-semibold">
+            <FaUser size={25} />
+            <Link
+              to="/perfil"
+              className="text-2xl font-semibold animate-pulse cursor-pointer"
+            >
               {user?.nombre ? user.nombre : "Sin nombre"}
-            </h2>
+            </Link>
           </div>
         )}
         <Link

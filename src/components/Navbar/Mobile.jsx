@@ -18,9 +18,12 @@ export default function Mobile({ handlerCerrarSession }) {
           Inicio
         </Link>
         {user && (
-          <h2 className="text-lg font-semibold">
+          <Link
+            to="/perfil"
+            className="text-2xl font-semibold animate-pulse cursor-pointer"
+          >
             {user?.nombre ? user.nombre : "Sin nombre"}
-          </h2>
+          </Link>
         )}
 
         <FiMenu onClick={handlerSwitch} size={35} />
