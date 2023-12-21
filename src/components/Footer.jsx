@@ -37,7 +37,10 @@ export default function Footer() {
           ))}
         </article>
       </section>
-      <article className="w-full h-12 bg-[#00334C] flex justify-center items-center ">
+      <article className="w-full py-4 bg-[#00334C] flex justify-center flex-col gap-4 items-center ">
+        <span className="text-xl text-white ">
+          Si lees ésto tenes que contratarme 😁
+        </span>
         <span className="text-xs text-white">
           © 2023 Julian Lopez Padua™. All Rights Reserved.
         </span>
