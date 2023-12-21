@@ -17,8 +17,8 @@ export default function Footer() {
   ];
   return (
     <footer className="flex flex-col gap-8 mt-32">
-      <section className="flex w-full justify-evenly items-center px-8  mb-32">
-        <article className="flex flex-col gap-6">
+      <section className="flex w-full justify-evenly  px-8  mb-32 flex-col md:flex-row gap-8 md:gap-0">
+        <article className="flex flex-col gap-6 ">
           <strong className="block text-center text-xl font-medium text-gray-900 sm:text-2xl">
             ¿Queres recibir las ultimas novedades?
           </strong>
@@ -26,14 +26,14 @@ export default function Footer() {
             <input
               type="text"
               placeholder="ejemplo@gmail.com"
-              className="rounded border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
+              className="rounded border border-gray-600 mx-auto md:mx-0 md:border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
             />
-            <button className="px-6 py-2 font-semibold bg-black text-white hover:bg-zinc-800 transition-colors rounded w-max">
+            <button className="hidden md:block px-6 py-2 font-semibold bg-black text-white hover:bg-zinc-800 transition-colors rounded w-max">
               Suscribirse
             </button>
           </div>
         </article>
-        <article className="flex gap-16 text-gray-700">
+        <article className="flex gap-16 text-gray-700 flex-wrap md:flex-row justify-center">
           {/* Hice esto para no repetir tantas lineas de codigo */}
           {footerInfo.map((section, index) => (
             <section key={index}>
