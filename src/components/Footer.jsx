@@ -26,7 +26,7 @@ export default function Footer() {
             <input
               type="text"
               placeholder="ejemplo@gmail.com"
-              className="rounded border border-gray-600 mx-auto md:mx-0 md:border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
+              className="rounded border border-gray-600 mx-auto md:mx-0 md:border-gray-200 bg-gray-100 p-4 md:pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
             />
             <button className="hidden md:block px-6 py-2 font-semibold bg-black text-white hover:bg-zinc-800 transition-colors rounded w-max">
               Suscribirse
