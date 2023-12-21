@@ -24,17 +24,20 @@ export default function Navbar() {
 
   return (
     <header className="flex fixed top-0 items-center h-16 w-full bg-white px-6 justify-between z-50 ">
-      {user ? (
+      {user && (
         <div className="flex items-center gap-2">
           <FaUser />
-          <h2>{user?.nombre ? user.nombre : "Sin nombre"}</h2>
-        </div>
-      ) : (
-        <div>
-          <h2>Jsonplaceholder</h2>
+          <h2 className="text-xl font-semibold">
+            {user?.nombre ? user.nombre : "Sin nombre"}
+          </h2>
         </div>
       )}
-
+      <Link
+        className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+        to="/"
+      >
+        Ir a Inicio
+      </Link>
       {user ? (
         <ul className="flex gap-6 items-center">
           {user.isAdmin && (
@@ -61,10 +64,20 @@ export default function Navbar() {
       ) : (
         <ul className="flex gap-6">
           <li>
-            <Link to="/login">Login</Link>
+            <Link
+              to="/login"
+              className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+            >
+              Login
+            </Link>
           </li>
           <li>
-            <Link to="/registro">Registro</Link>
+            <Link
+              to="/registro"
+              className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+            >
+              Registro
+            </Link>
           </li>
         </ul>
       )}
