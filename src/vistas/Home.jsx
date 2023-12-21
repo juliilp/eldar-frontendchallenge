@@ -98,7 +98,7 @@ export default function Home() {
         )}
       </section>
 
-      <article className="flex flex-col w-full">
+      <article className="flex flex-col w-full items-center justify-center">
         <div className="flex gap-2 items-center justify-center px-6 md:px-0 md:gap-6">
           <button
             onClick={handlerRetrocederPagina}
@@ -119,14 +119,19 @@ export default function Home() {
           </button>
         </div>
 
-        <div
-          className="flex gap-3 items-center justify-center my-4 cursor-pointer "
-          onClick={handlerVerMas}
-        >
-          <button type="button" className="text-sm md:text-xl">
+        <div className="flex gap-3 items-center justify-center my-4 w-max ">
+          <button
+            type="button"
+            className="text-xl md:text-2xl my-8"
+            onClick={handlerVerMas}
+          >
             Ver más posts
           </button>
-          <FaArrowDown size={20} className="animate-bounce" />
+          <FaArrowDown
+            size={25}
+            className="animate-bounce cursor-pointer"
+            onClick={handlerVerMas}
+          />
         </div>
       </article>
 
