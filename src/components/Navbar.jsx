@@ -36,14 +36,24 @@ export default function Navbar() {
       )}
 
       {user ? (
-        <ul className="flex gap-6">
+        <ul className="flex gap-6 items-center">
           {user.isAdmin && (
             <>
               <li>
-                <Link to="/crearpost">Crear post</Link>
+                <Link
+                  to="/crearpost"
+                  className="rounded-lg py-[10px] px-10 font-bold bg-[#ff7070] text-white"
+                >
+                  Crear post
+                </Link>
               </li>
               <li>
-                <button onClick={handlerCerrarSession}>Cerrar sesion</button>
+                <button
+                  onClick={handlerCerrarSession}
+                  className="rounded-lg py-2 px-10 font-bold bg-[#ff7070] text-white"
+                >
+                  Cerrar sesion
+                </button>
               </li>
             </>
           )}
