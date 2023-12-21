@@ -24,20 +24,23 @@ export default function Navbar() {
 
   return (
     <header className="flex fixed top-0 items-center h-16 w-full bg-white px-6 justify-between z-50 ">
-      {user && (
-        <div className="flex items-center gap-2">
-          <FaUser />
-          <h2 className="text-xl font-semibold">
-            {user?.nombre ? user.nombre : "Sin nombre"}
-          </h2>
-        </div>
-      )}
-      <Link
-        className="rounded-lg py-[10px] px-10 font-bold bg-[rgb(74,142,204)] text-white"
-        to="/"
-      >
-        Ir a Inicio
-      </Link>
+      <article className="flex items-center gap-6">
+        {user && (
+          <div className="flex items-center gap-2">
+            <FaUser />
+            <h2 className="text-xl font-semibold">
+              {user?.nombre ? user.nombre : "Sin nombre"}
+            </h2>
+          </div>
+        )}
+        <Link
+          className="rounded-lg py-[10px] px-10 font-bold bg-[rgb(74,142,204)] text-white"
+          to="/"
+        >
+          Ir a Inicio
+        </Link>
+      </article>
+
       {user ? (
         <ul className="flex gap-6 items-center">
           {user.isAdmin && (
