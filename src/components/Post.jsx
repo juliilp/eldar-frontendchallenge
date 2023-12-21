@@ -21,7 +21,7 @@ export default function Post({ titulo, body, id }) {
   const editTexto = body.split("").splice(0, 125).join("");
   return (
     <article
-      className={`w-[350px] h-[400px] flex flex-col  gap-3 py-4 shadow-xl items-center overflow-hidden border-gray-500 rounded-lg }`}
+      className={`max-w-[350px] h-[400px] flex flex-col  gap-3 py-4 shadow-xl items-center justify-center overflow-hidden border-gray-500 rounded-lg }`}
     >
       <h1 className="font-bold text-xl max-w-[250px] text-center truncate ">
         {titulo}
