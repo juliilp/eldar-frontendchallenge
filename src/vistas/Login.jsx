@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { string } from "zod";
 import useUser from "../hooks/useUser";
 import validacionUser from "../zod/validacionUser";
+import Swal from "sweetalert2";
 const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useUser();
@@ -38,14 +38,26 @@ const Login = () => {
       const allUsers = JSON.parse(localStorage.getItem("allUsers"));
       const findUser = allUsers.find((user) => user.email === dataUser.email);
 
-      if (!findUser) return alert("Email incorrecto");
+      if (!findUser)
+        return Swal.fire({
+          icon: "error",
+          title: "Email incorrecto",
+          text: "Coloca un email existente",
+        });
 
       if (findUser.password !== dataUser.password)
-        return alert("Password incorrecta");
+        return Swal.fire({
+          icon: "error",
+          title: "Password incorrecta",
+        });
 
       localStorage.setItem("userLogin", JSON.stringify(findUser));
       setUser(findUser);
-      alert("Logueado con éxito");
+      Swal.fire({
+        icon: "success",
+        title: "¡Has iniciado sesion con éxito!",
+      });
+
       navigate("/");
     } catch (error) {
       // Ocurrió un error de validación
@@ -53,10 +65,9 @@ const Login = () => {
     }
   };
 
-  console.log(errorValidation);
   return (
     <section className="pt-[15vh] flex justify-center items-center h-screen flex-col">
-      <h1 className="text-5xl font-bold">Ingresa a tu cuenta</h1>
+      <h1 className="text-5xl font-bold text-center ">Ingresa a tu cuenta</h1>
       <p className="text-sm text-center dark:text-gray-400 my-10">
         ¿No tenes cuenta?
         <Link to="/registro" className=" pl-4 focus:underline hover:underline">
