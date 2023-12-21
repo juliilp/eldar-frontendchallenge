@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 export default function CrearPost() {
   const navigate = useNavigate();
@@ -11,6 +12,18 @@ export default function CrearPost() {
   });
   const handlerSubmit = async (e) => {
     e.preventDefault();
+    if (createPost.title.length < 4)
+      return Swal.fire({
+        icon: "error",
+        title: "Inserte al menos en el titulo 4 letras",
+      });
+
+    if (createPost.body.length < 4)
+      return Swal.fire({
+        icon: "error",
+        title: "Inserte al menos en el body 4 letras",
+      });
+
     const result = await axios.post(
       "/posts",
       {
@@ -24,8 +37,12 @@ export default function CrearPost() {
       }
     );
     if (result.status === 201) {
-      console.log(result.data);
-      alert("Post creado");
+      console.log(result);
+      Swal.fire({
+        icon: "success",
+        title: "Post creado, info en la consola :)",
+      });
+
       return navigate("/");
     }
   };
@@ -37,18 +54,36 @@ export default function CrearPost() {
     });
   };
   return (
-    <>
-      <form onSubmit={handlerSubmit}>
+    <main className="w-full h-screen flex justify-center items-center flex-col">
+      <h1 className="text-5xl font-bold text-center my-8">¡Crea tu post!</h1>
+      <form onSubmit={handlerSubmit} className="flex flex-col gap-8">
         <article>
-          <span>titulo:</span>
-          <input type="text" name="title" onChange={onChangePost} />
+          <span className="text-sm block">Titulo</span>
+          <input
+            type="text"
+            name="title"
+            onChange={onChangePost}
+            placeholder="Escribí el titulo..."
+            className="rounded w-full border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
+          />
         </article>
         <article>
-          <span>body:</span>
-          <input type="text" name="body" onChange={onChangePost} />
+          <span className="text-sm block">Body</span>
+          <input
+            type="text"
+            name="body"
+            onChange={onChangePost}
+            placeholder="Escribí el body.."
+            className="rounded w-full border-gray-200 bg-gray-100 p-4 pr-32 text-sm font-medium focus:ring-0 focus:border-gray-200 focus:bg-gray200"
+          />
         </article>
-        <button type="submit">Crear post</button>
+        <button
+          type="submit"
+          className="w-full px-8 py-3 font-semibold bg-black text-white hover:bg-zinc-800 transition-colors rounded"
+        >
+          Crear post
+        </button>
       </form>
-    </>
+    </main>
   );
 }
