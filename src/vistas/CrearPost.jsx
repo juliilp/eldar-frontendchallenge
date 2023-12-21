@@ -4,6 +4,8 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 export default function CrearPost() {
+  const usuarioLogueado = JSON.parse(localStorage.getItem("userLogin"));
+  const isAdmin = usuarioLogueado?.isAdmin;
   const navigate = useNavigate();
   const [createPost, setCreatePost] = useState({
     title: "",
@@ -12,6 +14,13 @@ export default function CrearPost() {
   });
   const handlerSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isAdmin)
+      return Swal.fire({
+        icon: "error",
+        title: "Solo los admins editar posts",
+      });
+
     if (createPost.title.length < 4)
       return Swal.fire({
         icon: "error",

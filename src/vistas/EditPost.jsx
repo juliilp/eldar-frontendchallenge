@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 export default function EditPost() {
+  const usuarioLogueado = JSON.parse(localStorage.getItem("userLogin"));
+  const isAdmin = usuarioLogueado?.isAdmin;
+
   const navigate = useNavigate();
   const [inputEdit, setInputEdit] = useState({
     title: "",
@@ -12,6 +15,12 @@ export default function EditPost() {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isAdmin)
+      Swal.fire({
+        icon: "error",
+        title: "Solo los admins editar posts",
+      });
 
     if (inputEdit.title.length < 3)
       return Swal.fire({
