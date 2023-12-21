@@ -62,5 +62,6 @@
 - Con el paginado no podes ir a una pagina inferior a la 1 ni superior al número total de páginas
 - Agregué la paginación de forma "infinita"
 - Agregué una flecha que aparece para desplazarse hacia arriba cuando llegas a cierto limite navegando hacia abajo
-
-¡Disfruta explorando las funcionalidades del proyecto!
+- Nueva seccion de " Perfil " donde aparte de ver tus datos, podes modificar tu nombre
+- La sección de perfil tiene la ruta protegida y también input y handlers validados
+  ¡Disfruta explorando las funcionalidades del proyecto!
