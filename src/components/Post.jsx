@@ -42,7 +42,11 @@ export default function Post({ titulo, body, id }) {
       <h1 className="font-bold text-xl w-[250px] md:w-[285px] text-center truncate ">
         {titulo}
       </h1>
-      <img src={`https://picsum.photos/id/${id + 150}/200/150`} alt="imagen" />
+      <img
+        src={`https://picsum.photos/id/${id + 150}/200/150`}
+        alt="imagen"
+        loading="lazy"
+      />
       <p className="max-w-[200px] text-xs text-center">{editTexto}</p>
       <div className="flex gap-6 items-center justify-center flex-col md:flex-row">
         {isAdmin && (
