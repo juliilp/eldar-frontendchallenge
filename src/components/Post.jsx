@@ -37,14 +37,14 @@ export default function Post({ titulo, body, id }) {
   const editTexto = body.split("").splice(0, 125).join("");
   return (
     <article
-      className={`max-w-[350px] h-[400px] flex flex-col  gap-3 py-4 shadow-xl items-center justify-center overflow-hidden border-gray-500 rounded-lg }`}
+      className={` w-full max-w-[350px] h-[450px] ,d:h-[400px] flex flex-col  gap-3 py-4 shadow-xl items-center justify-center  border-gray-500 rounded-lg }`}
     >
-      <h1 className="font-bold text-xl max-w-[250px] text-center truncate ">
+      <h1 className="font-bold text-xl w-[250px] md:w-[285px] text-center truncate ">
         {titulo}
       </h1>
       <img src={`https://picsum.photos/id/${id + 150}/200/150`} alt="imagen" />
       <p className="max-w-[200px] text-xs text-center">{editTexto}</p>
-      <div className="flex gap-6 items-center justify-center">
+      <div className="flex gap-6 items-center justify-center flex-col md:flex-row">
         {isAdmin && (
           <Link
             className="rounded-lg py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
@@ -55,7 +55,7 @@ export default function Post({ titulo, body, id }) {
         )}
         <button
           onClick={handlerBorrarPost}
-          className="rounded-lg py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
+          className="rounded-lg  py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
         >
           Borrar Post
         </button>
