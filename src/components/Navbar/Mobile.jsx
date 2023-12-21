@@ -35,27 +35,25 @@ export default function Mobile({ handlerCerrarSession }) {
             className="absolute top-12 items-center w-full flex justify-center bg-white  py-8 "
           >
             {user ? (
-              <ul className="flex flex-col gap-6 items-center">
+              <ul className="flex flex-col gap-6 ">
                 {user.isAdmin && (
-                  <>
-                    <li>
-                      <Link
-                        to="/crearpost"
-                        className="rounded-lg py-[10.5px] px-6 font-bold bg-[rgb(74,142,204)] text-white"
-                      >
-                        Crear post
-                      </Link>
-                    </li>
-                    <li>
-                      <button
-                        onClick={handlerCerrarSession}
-                        className="rounded-lg py-2 px-6 font-bold bg-[rgb(74,142,204)] text-white"
-                      >
-                        Cerrar sesion
-                      </button>
-                    </li>
-                  </>
+                  <li>
+                    <Link
+                      to="/crearpost"
+                      className="rounded-lg py-[10.5px] px-6 font-bold bg-[rgb(74,142,204)] text-white"
+                    >
+                      Crear post
+                    </Link>
+                  </li>
                 )}
+                <li>
+                  <button
+                    onClick={handlerCerrarSession}
+                    className="rounded-lg py-2 px-6 font-bold bg-[rgb(74,142,204)] text-white"
+                  >
+                    Cerrar sesion
+                  </button>
+                </li>
               </ul>
             ) : (
               <ul className="flex flex-col gap-6">
