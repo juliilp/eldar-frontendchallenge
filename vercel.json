@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/login",
+      "dest": "/"
+    },
+    {
+      "src": "/registro",
+      "dest": "/"
+    },
+    {
+      "src": "/perfil",
+      "dest": "/"
+    },
+    {
+      "src": "/crearpost",
+      "dest": "/"
+    },
+    {
+      "src": "/editpost/:id",
+      "dest": "/"
+    }
+  ]
+}
