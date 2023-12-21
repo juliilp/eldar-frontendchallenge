@@ -4,6 +4,7 @@ import PostLoading from "../components/PostLoading";
 import usePosts from "../hooks/usePosts";
 import axios from "axios";
 import { FaArrowDown, FaArrowUp, FaSearch } from "react-icons/fa";
+import { motion } from "framer-motion";
 export default function Home() {
   const [searchFilter, setSearchFilter] = useState("");
   const {
@@ -43,7 +44,10 @@ export default function Home() {
   }
 
   return (
-    <main
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.75 }}
       className="w-full flex justify-center items-center flex-col px-24 mt-[15vh] relative"
       id="menu"
     >
@@ -117,6 +121,6 @@ export default function Home() {
           />
         </a>
       )}
-    </main>
+    </motion.main>
   );
 }
