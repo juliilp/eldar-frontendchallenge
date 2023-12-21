@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useUser from "../hooks/useUser";
+import { useEffect, useState } from "react";
 export default function Post({ titulo, body, id }) {
   const usuarioLogueado = JSON.parse(localStorage.getItem("userLogin"));
-
-  const isAdmin = usuarioLogueado?.isAdmin;
-
+  const [verBoton, setVerBoton] = useState(false)
+  const {user} = useUser()
+   const isAdmin = usuarioLogueado?.isAdmin;
+  const noAdmin = usuarioLogueado && usuarioLogueado.isAdmin === false
   const handlerBorrarPost = async () => {
     if (isAdmin) return alert("No podes borrar siendo admin");
 
@@ -33,6 +36,11 @@ export default function Post({ titulo, body, id }) {
       console.log(error);
     }
   };
+  
+  useEffect(() => {
+    setVerBoton(user !== null && user !== undefined)
+  },[user])
+
   const editTexto = body.split("").splice(0, 125).join("");
   return (
     <article
@@ -56,12 +64,15 @@ export default function Post({ titulo, body, id }) {
             Editar
           </Link>
         )}
+       {
+        noAdmin && 
         <button
-          onClick={handlerBorrarPost}
-          className="rounded-lg  py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
-        >
-          Borrar Post
-        </button>
+        onClick={handlerBorrarPost}
+        className="rounded-lg  py-2 px-10 font-bold bg-[rgb(74,142,204)] text-white"
+      >
+        Borrar Post
+      </button>
+       }
       </div>
     </article>
   );
