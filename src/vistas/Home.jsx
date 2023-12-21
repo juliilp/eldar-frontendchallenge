@@ -5,8 +5,10 @@ import usePosts from "../hooks/usePosts";
 import axios from "axios";
 import { FaArrowDown, FaArrowUp, FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion";
+
 export default function Home() {
   const [searchFilter, setSearchFilter] = useState("");
+  const [showScrollButton, setShowScrollButton] = useState(false);
   const {
     handlerVerMas,
     handlerAvanzarPagina,
@@ -25,24 +27,35 @@ export default function Home() {
       const result = await axios.get(
         `/posts?q=${searchFilter}&_limit=${limit}&_page=${page}`
       );
-      return setAllPosts(result.data);
+      setAllPosts(result.data);
+      // Resetea la visibilidad del botón al hacer una nueva búsqueda
+      setShowScrollButton(false);
     } catch (error) {
       console.log("Error al traer los posts: " + error);
       throw error;
     }
   };
 
-  const pageDisabled = page > 1 ? false : true;
-
-  function generateLoading(number) {
+  const generateLoading = (number) => {
     let LoadingCard = [];
-
     for (let i = 0; i < number; i++) {
-      LoadingCard.push(<PostLoading />);
+      LoadingCard.push(<PostLoading key={i} />);
     }
     return LoadingCard;
-  }
+  };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setShowScrollButton(scrollY > 500);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const pageDisabled = page > 1 ? false : true;
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -56,7 +69,7 @@ export default function Home() {
           type="text"
           name="search"
           placeholder="Busqueda..."
-          className="outline-2  py-2 pl-4 mb-8 relative w-[300px] "
+          className="outline-2 py-2 pl-4 mb-8 relative w-[300px] "
           onChange={onChangeSearchFilter}
         />
         <FaSearch
@@ -65,7 +78,8 @@ export default function Home() {
           size={15}
         />
       </form>
-      <section className="w-full h-full   grid md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12 justify-center items-center">
+
+      <section className="w-full h-full grid md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12 justify-center items-center">
         {allPosts.length > 0 ? (
           <>
             {allPosts.map(({ title, body, id }, key) => {
@@ -77,13 +91,13 @@ export default function Home() {
         )}
       </section>
 
-      <article className="flex flex-col  w-full">
+      <article className="flex flex-col w-full">
         <div className="flex gap-2 items-center justify-center px-6 md:px-0 md:gap-6">
           <button
             onClick={handlerRetrocederPagina}
             disabled={pageDisabled}
             className={`rounded-lg py-2 px-6 md:px-10 font-bold bg-[#4A8ECC] text-white ${
-              pageDisabled && "cursor-not-allowed  bg-red-600 "
+              pageDisabled && "cursor-not-allowed bg-red-600"
             }`}
           >
             Retroceder
@@ -102,23 +116,19 @@ export default function Home() {
           className="flex gap-3 items-center justify-center my-4 cursor-pointer "
           onClick={handlerVerMas}
         >
-          <button type="button" className=" text-sm md:text-xl">
+          <button type="button" className="text-sm md:text-xl">
             Ver más posts
           </button>
-          <FaArrowDown size={20} />
+          <FaArrowDown size={20} className="animate-bounce" />
         </div>
       </article>
 
-      {allPosts.length > 17 && (
+      {showScrollButton && (
         <a
           href="#menu"
           className="fixed right-10 bottom-10 rounded-full bg-red-600 p-4 "
         >
-          <FaArrowUp
-            size={25}
-            color="white"
-            className="animate-bounce w-6 h-6"
-          />
+          <FaArrowUp size={25} color="white" className="animate-pulse" />
         </a>
       )}
     </motion.main>
