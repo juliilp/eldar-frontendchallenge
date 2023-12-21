@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import axios from "axios";
 import isAuthenticate from "./components/isAuthenticate";
 import isAdmin from "./components/isAdmin";
+import isNotAuthenticate from "./components/isNotAuthenticate";
 
 axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/";
 
@@ -15,7 +16,7 @@ export default function App() {
   const LazyHome = lazy(() => import("./vistas/Home"));
   const LazyEditPost = lazy(() => import("./vistas/editPost"));
   const LazyCrearPost = lazy(() => import("./vistas/CrearPost"));
-
+  const LazyPerfil = lazy(() => import("./vistas/Perfil"));
   return (
     <BrowserRouter>
       <UserProvider>
@@ -44,6 +45,17 @@ export default function App() {
               />
             </Route>
 
+            {/* No te deja acceder si no estas authenticado */}
+            <Route Component={isNotAuthenticate}>
+              <Route
+                path="/perfil"
+                element={
+                  <Suspense>
+                    <LazyPerfil />
+                  </Suspense>
+                }
+              />
+            </Route>
             {/* Ruta protegida que tiene que estar logueado y ser admin */}
             <Route Component={isAdmin}>
               <Route
