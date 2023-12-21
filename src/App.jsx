@@ -14,7 +14,7 @@ export default function App() {
   const LazyLogin = lazy(() => import("./vistas/Login"));
   const LazyRegistro = lazy(() => import("./vistas/Registro"));
   const LazyHome = lazy(() => import("./vistas/Home"));
-  const LazyEditPost = lazy(() => import("./vistas/editPost"));
+  const LazyEditPost = lazy(() => import("./vistas/EditPost"));
   const LazyCrearPost = lazy(() => import("./vistas/CrearPost"));
   const LazyPerfil = lazy(() => import("./vistas/Perfil"));
   return (
