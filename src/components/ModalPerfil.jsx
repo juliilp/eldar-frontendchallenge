@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 export default function ModalPerfil({ switchModal, closeModal }) {
   const [newNombre, setNewNombre] = useState("");
   const usuarioLogueado = JSON.parse(localStorage.getItem("userLogin"));
+  const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const handlerSubmit = (e) => {
     e.preventDefault();
     if (newNombre.length < 3)
@@ -29,6 +30,9 @@ export default function ModalPerfil({ switchModal, closeModal }) {
       text: "Actualiza la pagina para ver los cambios",
     });
     closeModal();
+    // Actualizando los datos en ambos keys del local storage
+    const findUser = allUsers.filter((e) => e.email !== usuarioLogueado.email);
+    localStorage.setItem("allUsers", JSON.stringify([...findUser, newUser]));
     localStorage.setItem("userLogin", JSON.stringify(newUser));
   };
 
