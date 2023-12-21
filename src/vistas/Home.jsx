@@ -52,7 +52,7 @@ export default function Home() {
           type="text"
           name="search"
           placeholder="Busqueda..."
-          className="outline-2  py-2 pl-4 mb-8 relative "
+          className="outline-2  py-2 pl-4 mb-8 relative w-[300px] "
           onChange={onChangeSearchFilter}
         />
         <FaSearch
@@ -61,7 +61,7 @@ export default function Home() {
           size={15}
         />
       </form>
-      <section className="w-full h-full   grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12 justify-center items-center">
+      <section className="w-full h-full   grid md:grid-cols-2 xl:grid-cols-3 gap-10 mb-12 justify-center items-center">
         {allPosts.length > 0 ? (
           <>
             {allPosts.map(({ title, body, id }, key) => {
@@ -108,7 +108,11 @@ export default function Home() {
           href="#menu"
           className="fixed right-10 bottom-10 rounded-full bg-red-600 p-4 "
         >
-          <FaArrowUp size={25} color="white" />
+          <FaArrowUp
+            size={25}
+            color="white"
+            className="animate-bounce w-6 h-6"
+          />
         </a>
       )}
     </main>
