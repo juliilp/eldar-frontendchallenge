@@ -9,8 +9,8 @@ export default function Mobile({ handlerCerrarSession }) {
   const [switchMenu, setSwitchMenu] = useState(false);
   const handlerSwitch = () => setSwitchMenu((prev) => !prev);
   return (
-    <header className="flex md:hidden  justify-between w-full items-center fixed top-0 bg-white z-20">
-      <article className="flex justify-between items-center w-full px-2 mt-2">
+    <header className="flex md:hidden  justify-between w-full items-center fixed top-0 bg-white z-20 py-4 ">
+      <article className="flex justify-between items-center w-full px-2 ">
         <Link
           className="rounded-lg py-2 px-6 font-bold bg-[rgb(74,142,204)] text-white"
           to="/"
@@ -33,7 +33,7 @@ export default function Mobile({ handlerCerrarSession }) {
         {switchMenu && (
           <motion.article
             initial={{ opacity: 0, top: 0 }}
-            animate={{ opacity: 1, top: 48 }}
+            animate={{ opacity: 1, top: 72 }}
             exit={{ opacity: 0 }}
             className="absolute top-12 items-center w-full flex justify-center bg-white  py-8 "
           >
