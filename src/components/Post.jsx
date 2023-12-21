@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 export default function Post({ titulo, body, id }) {
   const usuarioLogueado = JSON.parse(localStorage.getItem("userLogin"));
 
@@ -11,9 +12,24 @@ export default function Post({ titulo, body, id }) {
     try {
       const result = await axios.delete(`/posts/${id}`);
       console.log(result);
-      if (result.status === 200) {
-        alert(`¡Card ${id} borrada!`);
-      }
+
+      Swal.fire({
+        title: "¿Estas seguro de borrar la card?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, estoy seguro",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: "success",
+            title: `¡Card ${id} borrada!`,
+            text: 'En consola está el objeto "borrado" ',
+          });
+          console.log();
+        }
+      });
     } catch (error) {
       console.log(error);
     }
