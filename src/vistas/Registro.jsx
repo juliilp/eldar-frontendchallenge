@@ -78,8 +78,10 @@ const Login = () => {
   }, [errorValidation]);
 
   return (
-    <main className="w-full h-screen flex flex-col justify-center items-center">
-      <h1 className="text-5xl font-bold text-center ">Crea un usuario</h1>
+    <main className="w-full h-screen flex flex-col justify-center items-center mt-8 md:mt-0">
+      <h1 className="text-4xl font-bold text-center md:text-5xl ">
+        Crea un usuario
+      </h1>
       <p className="text-sm text-center dark:text-gray-400 my-10">
         ¿Ya tenes una cuenta?
         <Link to="/login" className=" pl-4 focus:underline hover:underline">

@@ -56,7 +56,7 @@ export default function Mobile({ handlerCerrarSession }) {
               <li>
                 <Link
                   to="/login"
-                  className="rounded-lg py-[10px] px-10 font-bold bg-[rgb(74,142,204)] text-white"
+                  className="rounded-lg py-[10px] px-[50px] font-bold bg-[rgb(74,142,204)] text-white"
                 >
                   Login
                 </Link>
