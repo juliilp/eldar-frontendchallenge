@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
   const footerInfo = [
     {
-      title: "Services",
+      title: "Servicios",
       items: ["Marketing", "Diseñadores", "Desarrollador web"],
     },
     {
