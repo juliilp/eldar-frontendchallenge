@@ -5,6 +5,7 @@ import usePosts from "../hooks/usePosts";
 import axios from "axios";
 import { FaArrowDown, FaArrowUp, FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const [searchFilter, setSearchFilter] = useState("");
@@ -27,6 +28,12 @@ export default function Home() {
       const result = await axios.get(
         `/posts?q=${searchFilter}&_limit=${limit}&_page=${page}`
       );
+      if (result.data.length === 0)
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "¡No se encontro ningun post!",
+        });
       setAllPosts(result.data);
       // Resetea la visibilidad del botón al hacer una nueva búsqueda
       setShowScrollButton(false);
