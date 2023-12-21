@@ -9,7 +9,7 @@ export default function Mobile({ handlerCerrarSession }) {
   const [switchMenu, setSwitchMenu] = useState(false);
   const handlerSwitch = () => setSwitchMenu((prev) => !prev);
   return (
-    <header className="flex md:hidden  justify-between w-full items-center">
+    <header className="flex md:hidden  justify-between w-full items-center fixed top-0 bg-white z-20">
       <article className="flex justify-between items-center w-full px-2 mt-2">
         <Link
           className="rounded-lg py-2 px-6 font-bold bg-[rgb(74,142,204)] text-white"
@@ -27,7 +27,7 @@ export default function Mobile({ handlerCerrarSession }) {
       </article>
 
       {switchMenu && (
-        <article className="absolute top-16 items-center w-full flex justify-center ">
+        <article className="absolute top-12 items-center w-full flex justify-center bg-white  py-8 ">
           {user ? (
             <ul className="flex flex-col gap-6 items-center">
               {user.isAdmin && (
