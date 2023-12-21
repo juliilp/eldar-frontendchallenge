@@ -21,7 +21,7 @@ export default function App() {
     <BrowserRouter>
       <UserProvider>
         <Navbar />
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<h1 className="w-full h-screen">Loading...</h1>}>
           <Routes>
             <Route path="/" element={<LazyHome />} />
 
@@ -30,7 +30,9 @@ export default function App() {
               <Route
                 path="/login"
                 element={
-                  <Suspense fallback={<h1>Loading...</h1>}>
+                  <Suspense
+                    fallback={<h1 className="w-full h-screen">Loading...</h1>}
+                  >
                     <LazyLogin />
                   </Suspense>
                 }
@@ -38,7 +40,9 @@ export default function App() {
               <Route
                 path="/registro"
                 element={
-                  <Suspense fallback={<h1>Loading...</h1>}>
+                  <Suspense
+                    fallback={<h1 className="w-full h-screen">Loading...</h1>}
+                  >
                     <LazyRegistro />
                   </Suspense>
                 }
@@ -50,7 +54,9 @@ export default function App() {
               <Route
                 path="/perfil"
                 element={
-                  <Suspense>
+                  <Suspense
+                    fallback={<h1 className="w-full h-screen">Loading...</h1>}
+                  >
                     <LazyPerfil />
                   </Suspense>
                 }
@@ -62,7 +68,9 @@ export default function App() {
               <Route
                 path="/crearpost"
                 element={
-                  <Suspense fallback={<h1>Loading...</h1>}>
+                  <Suspense
+                    fallback={<h1 className="w-full h-screen">Loading...</h1>}
+                  >
                     <LazyCrearPost />
                   </Suspense>
                 }
@@ -70,7 +78,9 @@ export default function App() {
               <Route
                 path="/editpost/:id"
                 element={
-                  <Suspense fallback={<h1>Loading...</h1>}>
+                  <Suspense
+                    fallback={<h1 className="w-full h-screen">Loading...</h1>}
+                  >
                     <LazyEditPost />
                   </Suspense>
                 }
