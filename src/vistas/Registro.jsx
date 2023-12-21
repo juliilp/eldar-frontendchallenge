@@ -36,6 +36,10 @@ const Login = () => {
       const usuariosExistentes = JSON.parse(localStorage.getItem("allUsers"));
       const usuariosActualizados = [...usuariosExistentes, dataUser];
       localStorage.setItem("allUsers", JSON.stringify(usuariosActualizados));
+      Swal.fire({
+        icon: "success",
+        title: "Usuario creado con éxito",
+      });
       navigate("/login");
     } catch (error) {
       setErrorValidation(error.errors);
